@@ -1,0 +1,14 @@
+time server has 2 functionalities-
+1.get Time As String
+--current system time as a string
+datatype-String
+no parameters required
+2.get Time Elapsed 
+--will return  elapsed time in milli seconds
+datatype-Long
+no parameters required
+
+PHP CLIENT CREATION
+locate the xampp folder-->locate php folder-->check for php configuration setting file(php.in)
+(here E:\xampp\php)-->find "soap"-->remove semi-colon for extensions=soap
+E:\xampp\htdocs-->create new text doxumnet-->save as"client.php"file-->

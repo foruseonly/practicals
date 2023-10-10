@@ -1,0 +1,4 @@
+ServiceReference1.TimeserverClient client = new ServiceReference1.TimeserverClient();
+Console.WriteLine("Time as String" + client.time2());
+Console.WriteLine("Time as Elapsed" + client.time());
+Console.Read();

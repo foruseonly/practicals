@@ -10,8 +10,35 @@
 # In[ ]:
 
 
+<?php
+$client=new SoapClient("http://localhost:8080/prac1/service1?WSDL");
+$t1=$client->operation1();
+echo"time as string",$t1->return;
+$t2=$client->operation2();
+echo"time elapsed",$t2->return;
+?>
 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TimeServerForClient1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ServiceReference1.service1Client client = new ServiceReference1.service1Client();
+            Console.WriteLine("time as string" + client.operation1());
+            Console.WriteLine("time as string" + client.operation2());
+            Console.Read();
+
+        }
+    }
+}
 
 # In[ ]:
 

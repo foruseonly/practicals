@@ -1,0 +1,70 @@
+---------Service.cs-----------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+namespace WcfService1
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+    [ServiceContract]
+    public interface IService1
+    {
+        [OperationContract]
+        [System.ServiceModel.Web.WebInvoke(Method = "GET", UriTemplate = "/SayHello/{value}",RequestFormat =System.ServiceModel.Web.WebMessageFormat.Json,ResponseFormat=System.ServiceModel.Web.WebMessageFormat.Json)]
+        string SayHello(string value);
+     
+    }
+}
+
+---------Service1.svc.cs----------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+namespace WcfService1
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
+    public class Service1 : IService1
+    {
+       
+        
+public string SayHello(string value)
+        {
+            return string.Format($"helle {value}!! welcome to wcf");
+        }
+    }
+}
+
+-----------web.config--->changes-----------
+<services>
+		  <service name="WcfService1.Service">
+			  <endpoint address="jsonservice" binding="webHttpBinding" contract="WcfService1.IService1" behaviorConfiguration="web"> 
+				  
+			  </endpoint>
+			  <endpoint address="soapservice" binding="basicHttpBinding" contract="WcfService1.IService1">
+				  
+			  </endpoint>
+		  </service>
+	  </services>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <!-- To avoid disclosing metadata information, set the values below to false before deployment -->
+          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true"/>
+          <!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information -->
+          <serviceDebug includeExceptionDetailInFaults="false"/>
+        </behavior>
+      </serviceBehaviors>
+		<endpointBehaviors>
+			<behavior name="web">
+				<webHttp/>
+			</behavior>"
+		</endpointBehaviors>
+    </behaviors>
